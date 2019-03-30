@@ -14,7 +14,7 @@ export default class GithubProfile extends HTMLElement {
 
   async getUserProfile(id) {
     const response = await fetch(`https://api.github.com/users/${id}`);
-    if (!response.ok) return { message: 'User not found!' };
+    if (!response.ok) return { message: 'Opss, something is wrong!' };
     return response.json();
   }
 

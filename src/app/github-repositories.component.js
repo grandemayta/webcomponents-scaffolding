@@ -14,7 +14,7 @@ export default class GithubRepositories extends HTMLElement {
 
   async getUserRepositories(id) {
     const response = await fetch(`https://api.github.com/users/${id}/repos`);
-    if (!response.ok) return { message: 'User not found!' };
+    if (!response.ok) return { message: 'Opss, something is wrong!' };
     return response.json();
   }
 
@@ -30,13 +30,18 @@ export default class GithubRepositories extends HTMLElement {
   }
 
   userRepositoriesTemplate(repos = []) {
-    return repos.reduce(
-      (acc, repo) => `${acc}${this.userRepositoryTemplate(repo.name)}`,
-      ''
-    );
+    return `
+      <div>
+        ${repos.reduce(
+          (acc, repo) => `${acc}${this.userRepositoryTemplate(repo.name)}`,
+          ''
+        )}
+      </div>
+    `;
   }
 
   render(userRepositories) {
+    const { message } = userRepositories;
     return `
       <style>
         *, :host {
@@ -61,9 +66,11 @@ export default class GithubRepositories extends HTMLElement {
           padding: 20px 20px 0 20px;
         }
       </style>
-      <div>
-        ${this.userRepositoriesTemplate(userRepositories)}
-      </div>
+      ${
+        message
+          ? `<div>${message}</div>`
+          : this.userRepositoriesTemplate(userRepositories)
+      }
     `;
   }
 }
