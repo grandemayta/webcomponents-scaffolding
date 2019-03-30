@@ -24,7 +24,6 @@ $ npm run prod
 
 - [@webcomponents/webcomponentsjs](https://github.com/webcomponents/webcomponentsjs)
 - [core-js](https://github.com/zloirock/core-js)
-- [Lit-element](https://github.com/Polymer/lit-element)
 
 ### Tools
 
@@ -47,6 +46,9 @@ If the broswer doesn't support webcomponents, custom elements or es6 features li
     - Symbol
     - fetch
     - customElements
+    - CustomEvents
+    - Async / Await
+    - InstersectionObserver
 
 - Arrays
     - entries
