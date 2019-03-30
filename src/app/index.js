@@ -1,6 +1,6 @@
-import Bootstrap from './component';
+import * as WebComponents from './component';
 
-const bootstrap = () => Bootstrap;
+const bootstrap = () => WebComponents;
 
 if (
   // OTHERS
