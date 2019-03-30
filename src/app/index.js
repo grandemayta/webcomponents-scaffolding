@@ -6,6 +6,8 @@ if (
   // OTHERS
   'Symbol' in window &&
   'fetch' in window &&
+  'IntersectionObserver' in window &&
+  'CustomEvent' in window &&
   'customElements' in window &&
   // ARRAYS
   'entries' in Array.prototype &&
@@ -25,4 +27,6 @@ if (
   'startsWith' in String.prototype
 ) {
   bootstrap();
+} else {
+  import(/* webpackChunkName: "polyfills" */ './polyfills').then(() => bootstrap());
 }

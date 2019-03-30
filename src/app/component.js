@@ -1,14 +1,41 @@
-import { LitElement, html } from 'lit-element';
-
-export default class Greetings extends LitElement {
-  static get properties() {
-    return {
-      name: { type: String }
-    };
+export default class GithubProfile extends HTMLElement {
+  static get observedAttributes() {
+    return ['nickname'];
   }
 
-  render() {
-    return html`
+  get nickname() {
+    return this.getAttribute('nickname');
+  }
+
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
+
+  async getUserProfile(name) {
+    const response = await fetch(`https://api.github.com/users/${name}`);
+    if (!response.ok) return { message: 'User not found!' };
+    return response.json();
+  }
+
+  async attributeChangedCallback() {
+    const userProfile = await this.getUserProfile(this.nickname);
+    this.shadowRoot.innerHTML = this.render(userProfile);
+  }
+
+  userProfileTemplate(name, nickname, avatar) {
+    return `
+      <div>
+        <h1>${name || nickname}<h1>
+        <img src="${avatar}">
+      </div>
+    `;
+  }
+
+  render(userProfile) {
+    const { login: nickname, name, avatar_url: avatar, message } = userProfile;
+
+    return `
       <style>
         :host {
             display: block;
@@ -17,9 +44,13 @@ export default class Greetings extends LitElement {
             text-transform: uppercase;
         }
       </style>
-      <h1>Hello ${this.name}</h1>
+      ${
+        message
+          ? `<div>${message}</div>`
+          : this.userProfileTemplate(name, nickname, avatar)
+      }
     `;
   }
 }
 
-customElements.define('app-greetings', Greetings);
+customElements.define('github-profile', GithubProfile);

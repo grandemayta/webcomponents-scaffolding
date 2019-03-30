@@ -6,13 +6,15 @@ const dist = path.resolve(__dirname, '../dist');
 
 module.exports = {
   entry: {
-    bundle: ['core-js/fn/promise', `${src}/app/index.js`]
+    legacy: 'core-js/fn/promise',
+    bundle: [`${src}/app/index.js`]
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        exclude: /node_modules/
       }
     ]
   },

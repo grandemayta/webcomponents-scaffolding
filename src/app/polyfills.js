@@ -2,6 +2,8 @@
 import 'core-js/fn/symbol';
 import 'whatwg-fetch';
 import '@webcomponents/webcomponentsjs/webcomponents-bundle.js';
+import 'intersection-observer';
+import 'custom-event-polyfill';
 
 // ARRAYS
 import 'core-js/fn/array/entries';
