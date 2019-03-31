@@ -15,12 +15,21 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.html$/,
+        loader: 'html-loader',
+        exclude: /node_modules/
       }
     ]
   },
   resolve: {
     extensions: ['.js'],
-    modules: ['node_modules', 'src']
+    modules: ['node_modules', 'src'],
+    alias: {
+      services: `${src}/app/services`,
+      helpers: `${src}/app/helpers`
+    }
   },
   plugins: [
     new CleanWebpackPlugin([dist], {
