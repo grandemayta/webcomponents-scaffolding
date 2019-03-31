@@ -1,3 +1,5 @@
+import githubRepositoriesStyle from 'css-loader!./github-repositories.css';
+
 export default class GithubRepositories extends HTMLElement {
   static get observedAttributes() {
     return ['nickname'];
@@ -23,19 +25,18 @@ export default class GithubRepositories extends HTMLElement {
     this.shadowRoot.innerHTML = this.render(userRepositories);
   }
 
-  userRepositoryTemplate(name) {
+  userRepositoryTemplate(repo) {
+    const { name, url } = repo;
     return `
-      <p>${name}</p>
+      <a href="${url}" target="_blank">${name}</a>
     `;
   }
 
   userRepositoriesTemplate(repos = []) {
     return `
       <div>
-        ${repos.reduce(
-          (acc, repo) => `${acc}${this.userRepositoryTemplate(repo.name)}`,
-          ''
-        )}
+        <h1>Repositories</h1>
+        ${repos.reduce((acc, repo) => `${acc}${this.userRepositoryTemplate(repo)}`, '')}
       </div>
     `;
   }
@@ -44,27 +45,7 @@ export default class GithubRepositories extends HTMLElement {
     const { message } = userRepositories;
     return `
       <style>
-        *, :host {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        :host {
-          display: inline-block;
-          width: 240px;
-          height: 300px;
-          border: 2px solid #f0f0f0;
-          border-radius: 4px;
-          overflow: hidden;
-        }
-        div {
-          display: block;
-          height: 100%;
-          overflow: auto;
-        }
-        p {
-          padding: 20px 20px 0 20px;
-        }
+        ${githubRepositoriesStyle.toString()}
       </style>
       ${
         message

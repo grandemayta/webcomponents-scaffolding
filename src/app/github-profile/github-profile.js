@@ -1,3 +1,5 @@
+import githubProfileStyle from 'css-loader!./github-profile.css';
+
 export default class GithubProfile extends HTMLElement {
   static get observedAttributes() {
     return ['nickname'];
@@ -37,30 +39,7 @@ export default class GithubProfile extends HTMLElement {
 
     return `
       <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-        div {
-          display: inline-block;
-          padding: 20px;
-          width: 240px;
-          height: 300px;
-          border: 2px solid #f0f0f0;
-          border-radius: 4px;
-          overflow: hidden;
-        }
-        img {
-          width: 100%;
-          border-radius: 50%;
-        }
-        h1 {
-            margin-top: 20px;
-            font-size: 18px;
-            text-transform: uppercase;
-            text-align: center;
-        }
+        ${githubProfileStyle.toString()}
       </style>
       ${
         message

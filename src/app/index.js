@@ -1,4 +1,4 @@
-import * as WebComponents from './component';
+import * as WebComponents from './components';
 
 const bootstrap = () => WebComponents;
 

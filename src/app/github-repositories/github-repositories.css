@@ -1,0 +1,33 @@
+*, :host {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :host {
+    display: inline-block;
+    width: 240px;
+    height: 300px;
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  div {
+    display: block;
+    height: 100%;
+    overflow: auto;
+  }
+
+  h1 {
+    padding: 20px 20px 0 20px;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+  
+  a {
+    display: block;
+    padding: 20px 20px 0 20px;
+    text-decoration: none;
+    color: #000;
+  }
