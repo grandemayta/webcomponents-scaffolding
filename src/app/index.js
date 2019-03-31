@@ -1,7 +1,3 @@
-import * as WebComponents from './components';
-
-const bootstrap = () => WebComponents;
-
 if (
   // OTHERS
   'Symbol' in window &&
@@ -26,7 +22,9 @@ if (
   'includes' in String.prototype &&
   'startsWith' in String.prototype
 ) {
-  bootstrap();
+  module.exports = require('./components');
 } else {
-  import(/* webpackChunkName: "polyfills" */ './polyfills').then(() => bootstrap());
+  import(/* webpackChunkName: "polyfills" */ './polyfills').then(() => {
+    module.exports = require('./components');
+  });
 }

@@ -9,6 +9,11 @@ module.exports = {
     legacy: 'core-js/fn/promise',
     bundle: [`${src}/app/index.js`]
   },
+  optimization: {
+    splitChunks: {
+      maxAsyncRequests: 1
+    }
+  },
   module: {
     rules: [
       {
